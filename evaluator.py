@@ -35,7 +35,7 @@ data = json.load(data_file)
 rules_file = open('rules.txt', 'r')
 rules = json.load(rules_file)
 
-parts = 1
+parts = 20
 result = []
 data_length = len(data)
 
