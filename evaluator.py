@@ -1,4 +1,5 @@
 import json
+import time
 
 
 def evaluate_part(data):
@@ -35,14 +36,20 @@ data = json.load(data_file)
 rules_file = open('rules.txt', 'r')
 rules = json.load(rules_file)
 
-parts = 20
+parts = 4
 result = []
 data_length = len(data)
+
+current_milli_time = lambda: int(round(time.time() * 1000))
+
+start = current_milli_time()
 
 for i in range(parts):
     start_index = i * data_length / parts
     end_index = (i + 1) * data_length / parts
     result.append(evaluate_part(data[start_index:end_index]))
+
+print "Evaluation complete in: ", current_milli_time() - start, " ms"
             
 with open('output.txt', 'w') as output_file:
     json.dump(result, output_file)
