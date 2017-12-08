@@ -27,7 +27,7 @@ def evaluate_part(data):
                         path = path[path_part]
 
                     parent[key.split('.')[-1]] = value
-    return data[0]
+    return data
 
 
 data_file = open('input.txt', 'r')
@@ -47,7 +47,7 @@ start = current_milli_time()
 for i in range(parts):
     start_index = i * data_length / parts
     end_index = (i + 1) * data_length / parts
-    result.append(evaluate_part(data[start_index:end_index]))
+    result.extend(evaluate_part(data[start_index:end_index]))
 
 print "Evaluation complete in: ", current_milli_time() - start, " ms"
             
