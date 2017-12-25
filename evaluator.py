@@ -3,31 +3,33 @@ import time
 
 
 def evaluate_part(data):
-    for entity in data:
-        for rule in rules:
-            field_path = rule['if']['field']
-            operator = rule['if']['operator']
-            value = rule['if']['value']
+    return [evaluate_entity(entity) for entity in data]
 
-            current_value = entity
-            for key in field_path.split('.'):
-                current_value = current_value[key]
+def evaluate_entity(entity):
+    for rule in rules:
+        field_path = rule['if']['field']
+        operator = rule['if']['operator']
+        value = rule['if']['value']
 
-            if ((operator == '>' and current_value > value) or
-                (operator == '=' and current_value == value) or 
-                (operator == '<' and current_value < value)):
+        current_value = entity
+        for key in field_path.split('.'):
+            current_value = current_value[key]
 
-                for key in rule['then']:
-                    value = rule['then'][key]
-                    
-                    path = entity
-                    parent = None
-                    for path_part in key.split('.'):
-                        parent = path
-                        path = path[path_part]
+        if ((operator == '>' and current_value > value) or
+            (operator == '=' and current_value == value) or 
+            (operator == '<' and current_value < value)):
 
-                    parent[key.split('.')[-1]] = value
-    return data
+            for key in rule['then']:
+                value = rule['then'][key]
+                
+                path = entity
+                parent = None
+                for path_part in key.split('.'):
+                    parent = path
+                    path = path[path_part]
+
+                parent[key.split('.')[-1]] = value
+    return entity
 
 
 data_file = open('input.txt', 'r')
