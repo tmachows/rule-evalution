@@ -2,8 +2,8 @@ import json
 import random
 
 
-number_of_variables_in_one_object = 3
-objects_number = 20000
+number_of_variables_in_one_object = 20
+objects_number = 500000
 all_variables_names = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'
     , 's', 't', 'u', 'v', 'w', 'y', 'z']
 variables = random.sample(all_variables_names, number_of_variables_in_one_object)
@@ -30,7 +30,7 @@ def generate_mapping():
     return dict
 
 
-rules_number = 3
+rules_number = 20
 operators = ['=', '<', '>']
 
 
