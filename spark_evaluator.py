@@ -17,7 +17,7 @@ current_milli_time = lambda: int(round(time.time() * 1000))
 start = current_milli_time()
 
 # run evaluation
-result = objects.map(json.load).map(evaluate_entity)
+result = objects.map(json.loads).map(evaluate_entity)
 
 print "Evaluation complete in: ", current_milli_time() - start, " ms"
             
