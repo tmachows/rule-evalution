@@ -32,29 +32,30 @@ def evaluate_entity(entity):
     return entity
 
 
-data_file = open('input.txt', 'r')
-data = json.load(data_file)
+if __name__ == "main":
+    data_file = open('input.txt', 'r')
+    data = json.load(data_file)
 
-rules_file = open('rules.txt', 'r')
-rules = json.load(rules_file)
+    rules_file = open('rules.txt', 'r')
+    rules = json.load(rules_file)
 
-parts = 4
-result = []
-data_length = len(data)
+    parts = 4
+    result = []
+    data_length = len(data)
 
-current_milli_time = lambda: int(round(time.time() * 1000))
+    current_milli_time = lambda: int(round(time.time() * 1000))
 
-start = current_milli_time()
+    start = current_milli_time()
 
-for i in range(parts):
-    start_index = i * data_length / parts
-    end_index = (i + 1) * data_length / parts
-    result.extend(evaluate_part(data[start_index:end_index]))
+    for i in range(parts):
+        start_index = i * data_length / parts
+        end_index = (i + 1) * data_length / parts
+        result.extend(evaluate_part(data[start_index:end_index]))
 
-print "Evaluation complete in: ", current_milli_time() - start, " ms"
-            
-with open('output.txt', 'w') as output_file:
-    json.dump(result, output_file)
+    print "Evaluation complete in: ", current_milli_time() - start, " ms"
+                
+    with open('output.txt', 'w') as output_file:
+        json.dump(result, output_file)
 
-data_file.close()
-rules_file.close()
+    data_file.close()
+    rules_file.close()
