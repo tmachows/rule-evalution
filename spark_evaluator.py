@@ -11,7 +11,7 @@ rules = json.load(rules_file)
 
 # prepare spark context
 sc = SparkContext("local", "Rule Evaluation", pyFiles=['evaluator.py'])
-objects = sc.textFile("gs://rule-evaluation-bucket/input_spark.txt")
+objects = sc.textFile("gs://rule-evaluation-bucket/input_spark.txt", 2)
 
 current_milli_time = lambda: int(round(time.time() * 1000))
 evaluate = lambda obj: evaluate_entity(obj, rules)

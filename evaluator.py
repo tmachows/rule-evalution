@@ -32,7 +32,7 @@ def evaluate_entity(entity, rules):
     return entity
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     data_file = open('input.txt', 'r')
     data = json.load(data_file)
 
