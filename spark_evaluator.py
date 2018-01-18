@@ -14,10 +14,12 @@ sc = SparkContext("local", "Rule Evaluation", pyFiles=['evaluator.py'])
 objects = sc.textFile("gs://rule-evaluation-bucket/input_spark.txt")
 
 current_milli_time = lambda: int(round(time.time() * 1000))
+evaluate = lambda obj: evaluate_entity(obj, rules)
+
 start = current_milli_time()
 
 # run evaluation
-result = objects.map(json.loads).map(evaluate_entity)
+result = objects.map(json.loads).map(evaluate)
 
 print "Evaluation complete in: ", current_milli_time() - start, " ms"
             

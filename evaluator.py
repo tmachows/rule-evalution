@@ -2,10 +2,10 @@ import json
 import time
 
 
-def evaluate_part(data):
-    return [evaluate_entity(entity) for entity in data]
+def evaluate_part(data, rules):
+    return [evaluate_entity(entity, rules) for entity in data]
 
-def evaluate_entity(entity):
+def evaluate_entity(entity, rules):
     for rule in rules:
         field_path = rule['if']['field']
         operator = rule['if']['operator']
@@ -50,7 +50,7 @@ if __name__ == "main":
     for i in range(parts):
         start_index = i * data_length / parts
         end_index = (i + 1) * data_length / parts
-        result.extend(evaluate_part(data[start_index:end_index]))
+        result.extend(evaluate_part(data[start_index:end_index], rules))
 
     print "Evaluation complete in: ", current_milli_time() - start, " ms"
                 
