@@ -5,14 +5,14 @@ import pyspark
 from evaluator import evaluate_entity
 
 
-# load data from files to lists
-
+# load rules
 rules_file = open('rules.txt', 'r')
 rules = json.load(rules_file)
 
 # prepare spark context
 sc = pyspark.SparkContext()
 print "debug: ", sc.getConf().toDebugString()
+
 objects = sc.textFile("gs://rule-evaluation-bucket/input_spark.txt")
 
 evaluate = lambda obj: evaluate_entity(obj, rules)

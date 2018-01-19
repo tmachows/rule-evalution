@@ -51,6 +51,8 @@ if __name__ == "__main__":
         start_index = i * data_length / parts
         end_index = (i + 1) * data_length / parts
         result.extend(evaluate_part(data[start_index:end_index], rules))
+
+    print "Evaluation complete in: ", current_milli_time() - start, " ms"
                 
     with open('output.txt', 'w') as output_file:
         json.dump(result, output_file)
