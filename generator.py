@@ -3,7 +3,7 @@ import random
 
 
 number_of_variables_in_one_object = 20
-objects_number = 500000
+objects_number = 1000000
 all_variables_names = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'
     , 's', 't', 'u', 'v', 'w', 'y', 'z']
 variables = random.sample(all_variables_names, number_of_variables_in_one_object)
